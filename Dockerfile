@@ -26,6 +26,7 @@ RUN mkdir /app
 # RUN chown -R $APPLICATION_USER /app
 
 # USER $APPLICATION_USER
+USER 10014
 
 # These lines download and copy the packaged application into the Docker image and sets the working directory to where it was copied.
 RUN wget https://github.com/Thiyanwso2/org.hl7.fhir.validator-wrapper/releases/download/v1.0.0/validator-wrapper-jvm-1.0.38-SNAPSHOT.jar -P  /app \
