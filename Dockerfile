@@ -11,8 +11,12 @@ ARG PROJECT_VERSION=1.0.38-SNAPSHOT
 RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
 ENV APPLICATION_USER ktor
-RUN adduser -D -g '' $APPLICATION_USER
-RUN usermod -u 10001 $APPLICATION_USER
+ARG UID=10001
+# ARG GID=1000
+
+# RUN groupadd -g $GID -o $UNAME
+# RUN useradd -m -u $UID -o -s /bin/bash $APPLICATION_USER
+RUN adduser -D -g '' --uid $UID $APPLICATION_USER
 
 RUN mkdir /app
 RUN chown -R $APPLICATION_USER /app
