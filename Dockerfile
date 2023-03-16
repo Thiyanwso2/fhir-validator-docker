@@ -10,22 +10,22 @@ RUN apk add --update wget
 ARG PROJECT_VERSION=1.0.38-SNAPSHOT
 RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
-ENV APPLICATION_USER ktor
-ARG UID=10001
-ARG GID=10001
+# ENV APPLICATION_USER ktor
+# ARG UID=10001
+# ARG GID=10001
 
 # RUN groupadd -g $GID -o $UNAME
 # RUN useradd -m -u $UID -o -s /bin/bash $APPLICATION_USER
 # RUN adduser -D -g '' --uid $UID $APPLICATION_USER
 # RUN useradd -m -u \$UID -g \$GID -s /bin/bash \ktor
-# RUN groupadd -g "${GID}" ktor \
+# RUN groupadd -g 10001 ktor \
 #   && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" ktor
-RUN adduser --disabled-password --uid 10001 $APPLICATION_USER
+# RUN adduser --disabled-password --uid 10100 $APPLICATION_USER
 
 RUN mkdir /app
-RUN chown -R $APPLICATION_USER /app
+# RUN chown -R $APPLICATION_USER /app
 
-USER $APPLICATION_USER
+# USER $APPLICATION_USER
 
 # These lines download and copy the packaged application into the Docker image and sets the working directory to where it was copied.
 RUN wget https://github.com/Thiyanwso2/org.hl7.fhir.validator-wrapper/releases/download/v1.0.0/validator-wrapper-jvm-1.0.38-SNAPSHOT.jar -P  /app \
