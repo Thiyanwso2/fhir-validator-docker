@@ -12,11 +12,15 @@ RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
 ENV APPLICATION_USER ktor
 ARG UID=10001
-# ARG GID=1000
+ARG GID=10001
 
 # RUN groupadd -g $GID -o $UNAME
 # RUN useradd -m -u $UID -o -s /bin/bash $APPLICATION_USER
-RUN adduser -D -g '' --uid $UID $APPLICATION_USER
+# RUN adduser -D -g '' --uid $UID $APPLICATION_USER
+# RUN useradd -m -u \$UID -g \$GID -s /bin/bash \ktor
+# RUN groupadd -g "${GID}" ktor \
+#   && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" ktor
+RUN adduser --disabled-password --uid 10001 $APPLICATION_USER
 
 RUN mkdir /app
 RUN chown -R $APPLICATION_USER /app
