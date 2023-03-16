@@ -12,6 +12,7 @@ RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
 ENV APPLICATION_USER ktor
 RUN adduser -D -g '' $APPLICATION_USER
+RUN usermod -u 10001 $APPLICATION_USER
 
 RUN mkdir /app
 RUN chown -R $APPLICATION_USER /app
@@ -21,7 +22,7 @@ USER $APPLICATION_USER
 # These lines download and copy the packaged application into the Docker image and sets the working directory to where it was copied.
 RUN wget https://github.com/Thiyanwso2/org.hl7.fhir.validator-wrapper/releases/download/v1.0.0/validator-wrapper-jvm-1.0.38-SNAPSHOT.jar -P  /app \
     && cp /app/validator-wrapper-jvm-${PROJECT_VERSION}.jar /app/validator-wrapper.jar
-    
+
 WORKDIR /app
 
 # Environment vars here
