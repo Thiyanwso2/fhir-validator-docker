@@ -10,8 +10,8 @@ RUN apk add --update wget
 ARG PROJECT_VERSION=1.0.38-SNAPSHOT
 RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
-# ENV APPLICATION_USER ktor
-# ARG UID=10001
+ENV APPLICATION_USER ktor
+ARG UID=10014
 # ARG GID=10001
 
 # RUN groupadd -g $GID -o $UNAME
@@ -20,10 +20,10 @@ RUN echo "Project version set to -> ${PROJECT_VERSION}"
 # RUN useradd -m -u \$UID -g \$GID -s /bin/bash \ktor
 # RUN groupadd -g 10001 ktor \
 #   && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" ktor
-# RUN adduser --disabled-password --uid 10100 $APPLICATION_USER
+RUN adduser --disabled-password --uid ${UID} $APPLICATION_USER
 
 RUN mkdir /app
-# RUN chown -R $APPLICATION_USER /app
+RUN chown -R $APPLICATION_USER /app
 
 # USER $APPLICATION_USER
 USER 10014
