@@ -7,7 +7,7 @@ servers:
   - url: http://example.com/api/v1
 
 paths:
-  /posts:
+  /validate:
     post:
       summary: Validate a FHIR resource
       requestBody:
