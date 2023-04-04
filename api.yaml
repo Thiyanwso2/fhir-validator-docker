@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: FHIR Validator
+  version: 1.0.0
+  description: API for managing blog posts
+servers:
+  - url: http://example.com/api/v1
+
+paths:
+  /posts:
+    post:
+      summary: Validate a FHIR resource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Validation success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+
